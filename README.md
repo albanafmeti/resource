@@ -156,7 +156,7 @@ class PostController extends Controller {
         return (new PostResource($posts))->only(['id', 'title', 'content']);
     }
 ```
-In this example we use `only` method which filters fields, and the returned data will contains instances with the specified fields only.
+In this example we use `only` method which filters fields, and the returned data will contain instances with the specified fields only.
 We can use the method `except` if we want to exclude some fields:
 
 ```php
