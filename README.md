@@ -161,6 +161,6 @@ We can use the method `except` if we want to exclude some fields:
 
 ```php
 <?php
-return (new PostResource($posts))->exclude(['userId', 'createdAt']);
+return (new PostResource($posts))->except(['userId', 'createdAt']);
 
 ```
