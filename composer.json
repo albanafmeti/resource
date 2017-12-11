@@ -1,0 +1,21 @@
+{
+    "name": "noisim/resource",
+    "description": "This is a helper class which helps to build model resources for JSON responses.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alban Afmeti",
+            "email": "albanafmeti@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Noisim\\Resource\\": "src"
+        },
+        "files": ["src/helpers.php"]
+    }
+}
