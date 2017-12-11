@@ -48,7 +48,7 @@ class PostResource extends Resource {
         return [
 
             "id"             => $this->id,
-            "userId"          => $this->userId,
+            "userId"         => $this->userId,
             "title"          => $this->title,
             "content"        => $this->content,
             "createdAt"      => $this->createdAt
@@ -63,12 +63,93 @@ class CommentResource extends Resource {
         return [
 
             "id"             => $this->id,
-            "postId"          => $this->postId,
-            "userId"        => $this->userId,
+            "postId"         => $this->postId,
+            "userId"         => $this->userId,
             "content"        => $this->content,
             "createdAt"      => $this->createdAt
             
         ];
     }
 }
+
+```
+
+### Simple example
+
+In our controller we can return resources in this way:
+
+```php
+<?php
+
+namespace App\Controllers;
+
+class PostController extends Controller {
+
+    public function getAll() {
+
+        $posts = $this->funnelService->getAll();
+
+        // We pass the list of posts as an argument to the PostResource 
+        return new PostResource($posts);
+    }
+    
+    public function getById($id) {
+
+        $post = $this->funnelService->getById($id);
+        
+        // We pass the post as an argument to the PostResource 
+        return new PostResource($post);
+    }
+```
+Depending by the framework the conversion of such responses to JSON needs to be handled by the framework itself. *PostResource* is an instance that can be serialized to JSON easily since it implements JsonSerializable.
+
+#### Returning extra relationship fields
+
+```php
+<?php
+
+namespace App\Controllers;
+
+class PostController extends Controller {
+
+    public function getAll() {
+
+        $posts = $this->funnelService->getAll();
+
+        // We pass the list of posts as an argument to the PostResource 
+        return (new PostResource($posts))->with(function($post) {
+           return [
+              "comments" => new CommentResource($post->comments)
+           ];
+        });
+    }
+```
+
+The above example appends a *comments* field to the returned data for every post instance. *comments* contains the list of comments for the related post. In this case we use the `with` method which accepts a closure like an argument.
+
+#### Filtering fields
+
+
+```php
+<?php
+
+namespace App\Controllers;
+
+class PostController extends Controller {
+
+    public function getAll() {
+
+        $posts = $this->funnelService->getAll();
+
+        // We pass the list of posts as an argument to the PostResource 
+        return (new PostResource($posts))->only(['id', 'title', 'content']);
+    }
+```
+In this example we use `only` method which filters fields, and the returned data will contains instances with the specified fields only.
+We can use the method `except` if we want to exclude some fields:
+
+```php
+<?php
+return (new PostResource($posts))->exclude(['userId', 'createdAt']);
+
 ```
