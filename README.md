@@ -19,7 +19,7 @@ Regardless of used framework we can access these relations via models in this fo
  $comment->user;
  ```
  
- Sometime, when we want to return JSON from our app routes (API endpoints) we don't want to return the whole model object with all its fields, or sometimes we want to return any relationship field togethere with the core fields of a model.
+ Sometime, when we want to return JSON from our app routes (API endpoints) we don't want to return the whole model object with all its fields, or sometimes we want to return any relationship field together with the core fields of the model.
  In this case we need a package like **Resource** which is very helpful in such cases.
 
 For our example we have to build 3 classes which will extend *\Noisim\Resource\Resource* class.
