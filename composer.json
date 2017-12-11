@@ -1,6 +1,6 @@
 {
     "name": "noisim/resource",
-    "description": "This is a helper class which helps to build model resources for JSON responses.",
+    "description": "Helper package to build resources for JSON responses etc.",
     "type": "library",
     "license": "MIT",
     "authors": [
