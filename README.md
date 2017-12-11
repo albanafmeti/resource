@@ -91,7 +91,7 @@ class CommentResource extends Resource {
 
 ```
 
-### Simple example
+#### Simple example
 
 In our controller we can return resources in this way:
 
