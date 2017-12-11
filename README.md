@@ -1,5 +1,20 @@
 **Resource** is a package which is needed to build resources for JSON responses etc. I have tested it using Phalcon PHP framework.
 
+## Install
+
+This package is installed via [Composer](http://getcomposer.org/). To install, simply add it
+to your `composer.json` file:
+
+```json
+{
+    "require": {
+        "noisim/resource": "dev-master"
+    }
+}
+```
+
+and run composer to update the dependencies `composer update`.
+
 ## How to use
 
 Suppose in our app (which can be any framework like Laravel, Phalcon etc.) we have some models like *User*, *Post*, *Comment*. These models have their relationships between each other. So a user can have many posts, a post can have many comments, a user can have many comments, a post belongs to a user, a comment belongs to a post, a comment belongs to one user.
@@ -26,6 +41,8 @@ For our example we have to build 3 classes which will extend `\Noisim\Resource\R
 
 ```php
 <?php
+
+use \Noisim\Resource\Resource;
 
 class UserResource extends Resource {
 
@@ -81,8 +98,6 @@ In our controller we can return resources in this way:
 ```php
 <?php
 
-namespace App\Controllers;
-
 class PostController extends Controller {
 
     public function getAll() {
@@ -108,8 +123,6 @@ Depending by the framework the conversion of such responses to JSON needs to be 
 ```php
 <?php
 
-namespace App\Controllers;
-
 class PostController extends Controller {
 
     public function getAll() {
@@ -132,8 +145,6 @@ The above example appends a *comments* field to the returned data for every post
 
 ```php
 <?php
-
-namespace App\Controllers;
 
 class PostController extends Controller {
 
